@@ -5,7 +5,8 @@ import { pageFixture } from "../../hooks/pageFixture";
 setDefaultTimeout(60 * 1000 * 2)
 
 Given('User navigates to the application', async function () {
-  await pageFixture.page.goto("https://bookcart.azurewebsites.net/")
+  await pageFixture.page.goto(process.env.BASEURL)
+  pageFixture.logger.info("Navigates to the application")
 })
 
 Given('User click on the login link', async function () {
@@ -22,6 +23,7 @@ Given('User enter the password as {string}', async function (password) {
 
 When('User click on the login button', async function () {
   await pageFixture.page.locator('[color="primary"]').getByText("Login").nth(1).click()
+  pageFixture.logger.info("Waiting for 2 sec.")
   await pageFixture.page.waitForTimeout(2000)
 });
 

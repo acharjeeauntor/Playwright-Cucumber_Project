@@ -6,12 +6,14 @@ setDefaultTimeout(60 * 1000 * 2)
 
 When('user search for a {string}', async function (book) {
     await pageFixture.page.getByLabel("search").fill(book)
+    pageFixture.logger.info("Waiting for 2 sec.")
     await pageFixture.page.waitForTimeout(2000)
     await pageFixture.page.locator('[role="option"]').click()
 });
 
 When('user add the book to the cart', async function () {
     await pageFixture.page.locator("button .mat-button-wrapper").getByText(" Add to Cart").click()
+    pageFixture.logger.info("Waiting for 2 sec.")
     await pageFixture.page.waitForTimeout(2000)
 });
 
